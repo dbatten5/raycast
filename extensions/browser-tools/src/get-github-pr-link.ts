@@ -28,9 +28,9 @@ export default async function command() {
   }
 
   const prURL = currentTab.url;
-  const link = `[${prTitle}](${prURL})`;
+  const prLink = `[${prTitle}](${prURL})`;
 
-  await Clipboard.copy(link);
+  await Clipboard.copy(prLink);
 
   showToast({
     style: Toast.Style.Success,
