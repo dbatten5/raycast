@@ -12,9 +12,21 @@
   "commands": [
     {
       "name": "get-github-pr-link",
-      "title": "Get GitHub PR link",
+      "title": "Get GitHub PR rich link",
       "description": "Copies the link to a PR and creates it as a preformatted markdown hyperlink, e.g. [PR title](https://github.com/repo/pulls/123)",
       "mode": "no-view"
+    },
+    {
+      "description": "Return a list of open PRs in the browser and copy the link for whichever one is selected",
+      "name": "copy-github-pr-link",
+      "title": "Copy GitHub PR link",
+      "mode": "view"
+    },
+    {
+      "mode": "no-view",
+      "description": "Looks for a potential song name on the current webpage and runs a Spotify search against it",
+      "name": "search-spotify-for-a-song-on-the-current-webpage",
+      "title": "Search Spotify for a song on the current webpage"
     }
   ],
   "dependencies": {

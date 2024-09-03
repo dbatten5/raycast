@@ -1,5 +1,4 @@
-import { BrowserExtension, Clipboard } from "@raycast/api";
-import { showToast, Toast } from "@raycast/api";
+import { BrowserExtension, Clipboard, showHUD } from "@raycast/api";
 
 export default async function command() {
   const prTitle = await BrowserExtension.getContent({
@@ -8,22 +7,14 @@ export default async function command() {
   });
 
   if (!prTitle) {
-    showToast({
-      style: Toast.Style.Failure,
-      title: "Something went wrong",
-      message: "Couldn't find GitHub title",
-    });
+    await showHUD("Couldn't find GitHub title");
     return;
   }
 
   const tabs = await BrowserExtension.getTabs();
   const currentTab = tabs.find((tab) => tab.active === true);
   if (!currentTab) {
-    showToast({
-      style: Toast.Style.Failure,
-      title: "Something went wrong",
-      message: "Couldn't find active tab",
-    });
+    await showHUD("Couldn't active tab");
     return;
   }
 
@@ -31,10 +22,5 @@ export default async function command() {
   const prLink = `[${prTitle}](${prURL})`;
 
   await Clipboard.copy(prLink);
-
-  showToast({
-    style: Toast.Style.Success,
-    title: "Success",
-    message: "Copied PR link to clipboard",
-  });
+  await showHUD("Copied PR link to clipboard");
 }
