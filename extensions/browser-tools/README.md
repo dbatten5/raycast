@@ -1,3 +1,3 @@
 # Browser Tools
 
-Various browser tools
+Various browser tools that I find useful.

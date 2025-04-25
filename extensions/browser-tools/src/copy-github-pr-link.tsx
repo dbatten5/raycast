@@ -1,6 +1,8 @@
 import { ActionPanel, Action, List, BrowserExtension, Clipboard, PopToRootType, showHUD } from "@raycast/api";
 import { usePromise } from "@raycast/utils";
 
+const githubPrUrlRegex = /^https:\/\/github\.com\/[\w\-]+\/[\w\-]+\/pull\/\d+$/;
+
 const hudOptions = {
   clearRootSearch: true,
   popToRootType: PopToRootType.Immediate,
@@ -9,7 +11,7 @@ const hudOptions = {
 export default function Command() {
   const { isLoading, data: tabData } = usePromise(async () => {
     const tabs = await BrowserExtension.getTabs();
-    const githubTabs = tabs.filter((tab) => tab.url.includes("github.com"));
+    const githubTabs = tabs.filter((tab) => githubPrUrlRegex.test(tab.url));
 
     if (githubTabs.length == 0) {
       await showHUD("No GitHub tabs found", hudOptions);
